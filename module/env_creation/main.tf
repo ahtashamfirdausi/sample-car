@@ -8,7 +8,7 @@ resource "aws_vpc" "carriyo_vpc" {
 
 resource "aws_subnet" "carriyo_subnet_ec2" {
     vpc_id     = aws_vpc.carriyo_vpc.id
-    cidr_block = var.subnet_ec2_
+    cidr_block = var.subnet_ec2
     map_public_ip_on_launch = "true"
     availability_zone       = "eu-west-2a"
     tags ={
@@ -44,7 +44,7 @@ resource "aws_key_pair" "ec2_key_pair" {
   
 }
 resource "aws_instance" "ec2_instance" {
-    ami = data.aws_ami.amazon_linux2.vpc_id
+    ami = data.aws_ami.amazon_linux2
     instance_type = "t2.micro"
     vpc_security_group_ids = [aws_security_group.ec2_sg.id]
     subnet_id = aws_subnet.carriyo_subnet_ec2.id
